@@ -8,8 +8,8 @@ from routers import auth, platform, organizations, users, plantations, transacti
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="AZIZSTAN API",
-    description="Rubber Plantation Accounting System",
+    title="ARP API",
+    description="Accounts for Rubber Plantation",
     version="2.0.0",
 )
 
@@ -33,7 +33,7 @@ app.include_router(export.router)
 
 @app.get("/")
 def root():
-    return {"message": "AZIZSTAN API v2.0", "docs": "/docs"}
+    return {"message": "ARP API v2.0", "docs": "/docs"}
 
 
 @app.post("/api/seed-platform", tags=["dev"])
@@ -45,7 +45,7 @@ def seed_platform(db: Session = Depends(get_db)):
     admin = models.User(
         organization_id=None,
         username="Platform Admin",
-        email="admin@azizstan.com",
+        email="admin@arp.local",
         hashed_password=auth_utils.hash_password("admin1234"),
         role="PlatformAdmin",
         language="th",

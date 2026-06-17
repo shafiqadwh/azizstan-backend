@@ -4,6 +4,9 @@ import os
 
 # Use SQLite for initial local development as requested, but structured for Postgres later
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./azizstan.db")
+# Railway provides postgres:// but SQLAlchemy requires postgresql://
+if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
     engine = create_engine(

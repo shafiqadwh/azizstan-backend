@@ -54,7 +54,7 @@ def seed_platform(db: Session = Depends(get_db)):
     db.commit()
     return {
         "status": "seeded",
-        "email": "admin@azizstan.com",
+        "email": admin.email,
         "password": "admin1234",
         "note": "Change password immediately in production",
     }
